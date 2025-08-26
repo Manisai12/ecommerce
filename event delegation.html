@@ -1,0 +1,36 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced Event Delegation</title>
+</head>
+<body>
+  <h2>Fruit List</h2>
+  <ul id="itemList">
+    <li>Apple</li>
+    <li>Banana</li>
+    <li>Cherry</li>
+  </ul>
+
+  <button id="addItem">Add New Item</button>
+
+  <script>
+    const list = document.getElementById("itemList");
+    const addBtn = document.getElementById("addItem");
+
+    // Delegation: one listener for all <li>
+    list.addEventListener("click", function(e) {
+      if (e.target && e.target.tagName === "LI") {
+        alert("You clicked: " + e.target.textContent);
+      }
+    });
+
+    // Dynamically add new items
+    addBtn.addEventListener("click", () => {
+      const newLi = document.createElement("li");
+      newLi.textContent = "New Fruit " + (list.children.length + 1);
+      list.appendChild(newLi);
+    });
+  </script>
+</body>
+</html>
